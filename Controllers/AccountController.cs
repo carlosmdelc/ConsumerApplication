@@ -63,6 +63,15 @@ namespace ConsumerApplication.Controllers
 
                 if (result.Succeeded)
                 {
+	                if (registerViewModel.SelectedRole != null)
+	                {
+		                await _userManager.AddToRoleAsync(user, registerViewModel.SelectedRole);
+	                }
+	                else
+	                {
+		                await _userManager.AddToRoleAsync(user, RoleDetails.User);
+	                }
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect(returnurl ?? Url.Content("~/"));

@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - ConsumerApplication</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/ConsumerApplication.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -23,7 +24,28 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+	                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+	                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                        </li>
+                        <li class="nav-item">
+	                        <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
+                        </li>
+                        <li class="nav-item dropdown">
+	                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		                        Access Checker
+	                        </a>
+	                        <ul class="dropdown-menu">
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AllAccess">All Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AuthorizedAccess">Authorized Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AdminRoleAccess">Admin Role Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="UserOrAdminRoleAccess">User Or Admin Role Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="UserAndAdminRoleAccess">User And Admin Role Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AdminCreateAccess">Admin Role - Create Claim Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="AdminCreateEditDeleteAccess">Admin Role - Create, Edit and Delete Claim Access</a></li>
+		                        <li><a class="dropdown-item" asp-controller="AccessChecker" asp-action="">TBD</a></li>
+	                        </ul>
                         </li>
                     </ul>
                     <partial name="_LoginPartialCustom" />
@@ -32,9 +54,10 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+	    <main role="main" class="pb-3">
+            <partial name="_Notifications" />
+		    @RenderBody()
+	    </main>
     </div>
 
     <footer class="border-top footer text-muted">

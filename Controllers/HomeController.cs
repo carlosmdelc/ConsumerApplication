@@ -20,7 +20,7 @@ namespace ConsumerApplication.Controllers
             return View();
         }
 
-        [Authorize(Roles =RoleDetails.Admin)]
+        [Authorize(Roles = RoleDetails.Admin)]
         public IActionResult Privacy()
         {
             return View();

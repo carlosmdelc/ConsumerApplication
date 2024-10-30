@@ -37,6 +37,12 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedEmail = false;
 });
 
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy(RoleDetails.Admin, policy => policy.RequireRole(RoleDetails.Admin));
+	options.AddPolicy("AdminAndUser", policy => policy.RequireRole(RoleDetails.Admin).RequireRole(RoleDetails.User));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

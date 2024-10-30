@@ -14,10 +14,17 @@
 		<p>Admin can manage users and roles.</p>
 	</div>
 }
-else
+else if (User.IsInRole(RoleDetails.User))
 {
 	<div class="text-center">
 		<h1 class="display-4">User</h1>
 		<p>User can view the content.</p>
+	</div>
+}
+else
+{
+	<div class="text-center">
+		<h1 class="display-4">No Role</h1>
+		<p>You do not have any role.</p>
 	</div>
 }
